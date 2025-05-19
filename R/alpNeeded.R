@@ -1,0 +1,66 @@
+#' Function to compute alpha needed (fixed sample size)
+#'
+#' Function to compute two-sided alpha needed to achieve target power given a rate ratio. Useful for computing probability to achieve hurdles.
+#'
+#' This function computes the two-sided alpha alp.
+#' Function assumes a rate ratio < 1 is favourable to treatment.
+#' @param N Sample size.
+#' @param bta1 log-transform of rate ratio.
+#' @param thta Variance of frailty parameter.
+#' @param tau Expected follow-up time.
+#' @param lam0 Event rate for control.
+#' @param pow Target power.
+#' @param ar Allocation ratio (Number control / Total)
+#' @return The two-sided alpha level.
+#' @examples
+#'
+#' # alpha needed to achieve multiple powers given rate ratio (and other input).
+#' alpNeeded(N = 1000, bta1 = log(0.8), thta = 2, tau = 1, lam0 = 1.1, pow = c( .7, .8))
+#'
+#' # alpha needed for many inputs
+#' if (require("dplyr") & require("tidyr")) {
+#'
+#'   assumptions = tibble(RR = 0.8) %>%
+#'     crossing(
+#'       thta = c(2, 3, 4),
+#'       lam0 = 1.1,
+#'       pow = c(0.7, 0.8),
+#'       N = c(500, 1000),
+#'       tau = 1
+#'     ) %>%
+#'     mutate(
+#'       alp = alpNeeded(N = N, bta1 = log(RR), thta = thta, tau = tau, lam0 = lam0, pow = pow)
+#'     )
+#
+#'   assumptions %>% data.frame()
+#'
+#' }
+#'
+#'
+#' @export
+alpNeeded = function(N, bta1, thta, tau, lam0, pow = 0.8, ar = 0.5) {
+
+  zalp = zalp(N = N, bta1 = bta1, thta = thta, tau = tau, lam0 = lam0, pow = pow, ar = ar)
+
+  alp = (1 - stats::pnorm(zalp)) * 2
+
+  return(alp)
+}
+
+zalp = function(N, bta1, thta, tau, lam0, pow, ar = 0.5) {
+
+  L = N * tau * lam0 * (ar + (1-ar) * exp(bta1))
+
+  eta = 1 + thta * tau * (lam0) * (ar + (1-ar) * exp(2*bta1)) / (ar + (1-ar) * exp(bta1))
+
+  zpow = stats::qnorm(pow)
+
+  zalp = -(bta1) * sqrt(L *(ar*(1-ar)) / eta) - zpow
+
+  return(zalp)
+}
+
+
+
+
+
