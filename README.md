@@ -14,3 +14,5 @@ library("agpower")
 power.lwyy.test(N = 1000, RR = 0.8, thta = 1, L = 1000, tau = 0.9, alp = 0.05, ar = 0.5)
 
 ```
+
+Further details and example usage is provide in the package documentation.
