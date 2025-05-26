@@ -1,6 +1,6 @@
 Package: agpower
-Title: Operating Characteristics for a Recurrent Event Endpoint Using the Andersen-Gill Model with Robust Standard Errors
-Version: 0.1.1
+Title: Recurrent Event Analysis Planning Using the Andersen-Gill Model with Robust Standard Errors
+Version: 0.1.2
 Authors@R: 
     person("Stephen", "Rush", , "rushacademic@gmail.com", role = c("aut", "cre"))
 Description: Package implements functions useful in prospective planning and monitoring of a clinical trial when a recurrent event endpoint is to be assessed by Lin, Wei, Yang, and Ying (2010) model. The equations developed in Ingel and Jahn-Eimermacher (2014) and their consequences are employed.
