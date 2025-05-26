@@ -1,5 +1,5 @@
 Package: agpower
-Title: Recurrent event analysis planning using the Andersen-Gill model with robust standard errors
+Title: Recurrent Event Analysis Planning Using the Andersen-Gill Model with Robust Standard Errors
 Version: 0.1.2
 Authors@R: 
     person("Stephen", "Rush", , "rushacademic@gmail.com", role = c("aut", "cre"))
