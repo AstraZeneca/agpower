@@ -1,5 +1,5 @@
 Package: agpower
-Title: Recurrent Event Analysis Planning for the Robust Andersen-Gill
+Title: Recurrent Event Analysis Planning for Robust Andersen-Gill Model
 Version: 0.1.2
 Authors@R: 
     person("Stephen", "Rush", , "rushacademic@gmail.com", role = c("aut", "cre"))
